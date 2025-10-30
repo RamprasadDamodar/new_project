@@ -8,7 +8,7 @@ metadata:
 spec:
   destination:
     namespace: infrastore
-    name: kind
+    name: in-cluster
   project: default
   source:
     path: deploy/infrastore-chart
