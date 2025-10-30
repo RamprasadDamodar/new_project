@@ -12,9 +12,10 @@ runs:
     - name: debug value file
       id: debug-value-file
       shell: bash
-      working-directory: ./deploy/infrastore
+      working-directory: ./deploy/infrastore-chart
       run: |
         pwd
+        sed s/%TAG%/${{ inputs.image-tag }}/g values.yaml
 
 
 
