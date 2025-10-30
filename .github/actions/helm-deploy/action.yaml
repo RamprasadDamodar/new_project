@@ -29,7 +29,7 @@ runs:
       shell: bash
       working-directory: ./deploy/infrastore-chart
       run: |   # you may need to specify more parameters in helm command
-        helm upgrade --install infrastore ./infrastore-chart \
+        helm upgrade --install infrastore . \
           -n infrastore --create-namespace \
           --timeout 15m0s \
           -f values.yaml -f env.yaml \
