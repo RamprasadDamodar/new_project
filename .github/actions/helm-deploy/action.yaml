@@ -14,15 +14,7 @@ runs:
       shell: bash
       working-directory: ./deploy/infrastore
       run: |
-        pwd   
-
-    - name: replace image tag in the value file
-      id: set-image-tag
-      shell: bash
-      working-directory: ./deploy/infrastore
-      run: |
         pwd
-        sed s/%TAG%/${{ inputs.image-tag }}/g vaules.yaml >> env.yaml
 
 
 
