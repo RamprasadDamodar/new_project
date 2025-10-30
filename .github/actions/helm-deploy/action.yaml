@@ -14,8 +14,10 @@ runs:
     - name: replace image tag in the value file
       id: set-image-tag
       shell: bash
-      working-directory: ./deploy/infrastore-chart
       run: |
+        pwd
+        cd deploy/infrastore-chart
+        pwd
         sed s/%TAG%/${{ inputs.image-tag }}/g values.yaml >> env.yaml
 
     -   name: Commit and push changes
