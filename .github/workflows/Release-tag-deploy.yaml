@@ -16,12 +16,12 @@ jobs:
         with:
           token: ${{ secrets.PAT_TOKEN }}
 
-    - name: get metadata
+    -   name: get metadata
         id: get-metadata
         uses: ./.github/actions/get-pr-metadata 
 
         
-    - name: helm deploy
+    -   name: helm deploy
         id: helm-deploy
         uses: ./.github/actions/helm-deploy
         with:
