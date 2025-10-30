@@ -1,21 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: my-app
+  name: guestbook
   namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
 spec:
+  destination:
+    namespace: infrastore
+    name: kind
   project: default
   source:
-    repoURL: https://github.com/RamprasadDamodar/new_project.git  # Use the URL of your app-repo
+    path: deploy/infrastore-chart
+    repoURL: https://github.com/RamprasadDamodar/new_project
     targetRevision: HEAD
-    path: . # Path to your manifest files within the repo
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: my-app
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-
