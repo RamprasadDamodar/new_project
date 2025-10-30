@@ -25,7 +25,7 @@ runs:
         git config --global user.name "RamprasadDamodar"
         git config --global user.email "Ramprasad.Damodar1989@gmail.com"
         git add .
-        git commit -m "Updated image tag to ${{ github.event.inputs.image_tag }}"
+        git commit -m "Updated image tag"
         git push    
 
 
