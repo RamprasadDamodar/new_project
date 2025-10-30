@@ -15,14 +15,14 @@ runs:
       working-directory: ./deploy/infrastore-chart
       run: |
         pwd
-        sed s/%TAG%/${{ inputs.image-tag }}/g values.yaml >> env.yaml
+        sed s/%TAG%/${{ inputs.image-tag }}/g values.yaml
 
     - name: debug value file
       id: debug-value-file
       shell: bash
       working-directory: ./deploy/infrastore-chart
       run: |
-        cat env.yaml    
+        cat values.yaml
 
     - name: Commit and push changes
       id: commit-push
