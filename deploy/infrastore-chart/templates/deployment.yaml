@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "infrastore-chart.fullname" . }}
+  labels:
+    {{- include "infrastore-chart.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "infrastore-chart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "infrastore-chart.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          env:
+            - name: DJANGO_SUPERUSER_USERNAME
+              value: {{ .Values.env.superuser.username | quote }}
+            - name: DJANGO_SUPERUSER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "infrastore-chart.fullname" . }}-secrets
+                  key: DJANGO_SUPERUSER_PASSWORD
+          resources:
+            {{- toYaml .Values.pod.resources | nindent 12 }}
+          volumeMounts:
+            - name: media-storage
+              mountPath: /app/media
+            - name: db-storage
+              mountPath: /app/db
+      volumes:
+        - name: media-storage
+          persistentVolumeClaim:
+            claimName: {{ include "infrastore-chart.fullname" . }}-media-pvc
+        - name: db-storage
+          persistentVolumeClaim:
+            claimName: {{ include "infrastore-chart.fullname" . }}-db-pvc
