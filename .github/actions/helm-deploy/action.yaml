@@ -1,17 +1,28 @@
 name: helm-deploy
-description: "Execute package to deploy"
+description: "Execute helm package to deploy built image"
 inputs:
   image-tag:
     description: "The deploying docker image tag"
-    required: true
+    required: true           
+          
 
 runs:
-  using: "composite"
+  using: composite
   steps:
-    - id: set-image-tag
-      name: replace image tag in the value file
+    - name: debug value file
+      id: debug-value-file
       shell: bash
+      working-directory: ./deploy/infrastore
+      run: |
+        pwd   
+
+    - name: replace image tag in the value file
+      id: set-image-tag
+      shell: bash
+      working-directory: ./deploy/infrastore
       run: |
         pwd
-        cd deploy/infrastore-chart
-        pwd
+        sed s/%TAG%/${{ inputs.image-tag }}/g vaules.yaml >> env.yaml
+
+
+
