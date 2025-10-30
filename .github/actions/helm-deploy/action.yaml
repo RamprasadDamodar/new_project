@@ -37,6 +37,9 @@ runs:
           --wait
 
     - name: Test service URLs
+      id: service
+      shell: bash
+      working-directory: ./deploy/infrastore-chart
       run: |
           minikube service list
 
