@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: saheerbabu/infrastore
-  tag: latest7
+  tag: latest
   pullPolicy: IfNotPresent
 
 env:
