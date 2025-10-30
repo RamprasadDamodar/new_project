@@ -1,0 +1,27 @@
+name: helm-deploy
+description: "Execute package to deploy"
+inputs:
+  image-tag:
+    description: "The deploying docker image tag"
+    required: true
+         
+          
+
+runs:
+  using: composite
+  steps:
+ 
+    - name: replace image tag in the value file
+      id: set-image-tag
+      shell: bash
+      working-directory: ./deploy/infrastore-chart
+      run: |
+        sed s/%TAG%/${{ inputs.image-tag }}/g values.yaml >> env.yaml
+
+    -   name: Commit and push changes
+        run: |
+            git config --global user.name "RamprasadDamodar"
+            git config --global user.email "Ramprasad.Damodar1989@gmail.com"
+            git add .
+            git commit -m "Updated image tag to ${{ github.event.inputs.image_tag }}"
+            git push    

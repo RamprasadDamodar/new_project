@@ -1,0 +1,52 @@
+name: get-pr-metadata
+description: "Read commit, pull request metadata"
+outputs:
+  build-date:
+    description: "The flow execution date and time"
+    value: ${{ steps.get-metadata.outputs.build-date }}
+  sha-short:
+    description: "The short version of commit SHA"
+    value: ${{ steps.get-metadata.outputs.sha-short }}
+  head-sha-short:
+    description: "The short version of commit SHA of head"
+    value: ${{ steps.get-metadata.outputs.head-sha-short }}
+  branch:
+    description: "The branch name"
+    value: ${{ steps.get-metadata.outputs.branch }}
+  tag:
+    description: "This could be release tag or short sha"
+    value: ${{ steps.get-metadata.outputs.tag }}
+  pr-number:
+    description: "pr number"
+    value: ${{ steps.get-metadata.outputs.pr-number }}
+
+runs:
+  using: "composite"
+  steps:
+    - id: get-metadata
+      name: Read PR and commit metadata
+      shell: bash
+      run:
+        |
+        echo "build-date=$(date +%FT%T%z)" >> "$GITHUB_OUTPUT"
+        echo "sha-short=$(git rev-parse --short ${{ github.event.pull_request.head.sha }})" >> "$GITHUB_OUTPUT"
+        echo "head-sha-short=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+        echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> "$GITHUB_OUTPUT"
+        echo "pr-number=${{ github.event.number }}" >> "$GITHUB_OUTPUT"
+        if [ "${{github.event_name}}" = "pull_request" ]; then
+          echo "tag=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+        elif [ "${{github.event_name}}" = "push" ]; then
+          echo "tag=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_OUTPUT"
+        else
+          echo "tag=${GITHUB_REF##*/}" >> $GITHUB_OUTPUT
+        fi
+    - id: debug-output
+      name: Debug output values
+      shell: bash
+      run: |
+        echo "build-date:     ${{ steps.get-metadata.outputs.build-date }}"
+        echo "sha-short:      ${{ steps.get-metadata.outputs.sha-short }}"
+        echo "head-sha-short: ${{ steps.get-metadata.outputs.head-sha-short }}"
+        echo "branch:         ${{ steps.get-metadata.outputs.branch }}"
+        echo "tag:            ${{ steps.get-metadata.outputs.tag }}"
+        echo "pr-number:      ${{ steps.get-metadata.outputs.pr-number }}"

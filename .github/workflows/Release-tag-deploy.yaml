@@ -1,0 +1,28 @@
+name: Deploy-release-tag
+
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+jobs:
+  update_tag:
+    runs-on: ubuntu-latest
+
+    steps:
+    -   name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+    - name: get metadata
+        id: get-metadata
+        uses: ./.github/actions/get-pr-metadata 
+
+        
+    - name: helm deploy
+        id: helm-deploy
+        uses: ./.github/actions/helm-deploy
+        with:
+          image-tag: ${{ steps.build-push-docker.outputs.docker-tag }}
