@@ -24,9 +24,10 @@ runs:
       run: |
         git config --global user.name "RamprasadDamodar"
         git config --global user.email "Ramprasad.Damodar1989@gmail.com"
+
         git add .
         git commit -m "Updated image tag"
-        git push    
+        git push     
 
 
 
