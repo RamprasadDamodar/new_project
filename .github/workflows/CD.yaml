@@ -20,7 +20,7 @@ jobs:
         run: |
             cd deploy/infrastore-chart
             echo "Updating image tag to ${{ github.event.inputs.image_tag }}"
-            sed -i "s/tag:.*/tag: ${{ github.event.inputs.image_tag }}/" helm-chart/values.yaml
+            sed -i "s/tag:.*/tag: ${{ github.event.inputs.image_tag }}/" values.yaml
 
     -   name: Commit and push changes
         run: |
