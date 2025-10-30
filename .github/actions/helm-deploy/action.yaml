@@ -30,9 +30,11 @@ runs:
       working-directory: ./deploy/infrastore-chart
       run: |   # you may need to specify more parameters in helm command
         helm upgrade --install infrastore ./infrastore-chart --wet \
-          -n infrastore --timeout 15m0s \
+          -n infrastore --create-namespace \
+          --timeout 15m0s \
           -f values.yaml -f env.yaml \
-          --history-max 3 --yes .
+          --history-max 3 \
+          --wait
 
 
 
