@@ -25,4 +25,4 @@ jobs:
         id: helm-deploy
         uses: ./.github/actions/helm-deploy
         with:
-          image-tag: ${{ steps.build-push-docker.outputs.docker-tag }}
+          image-tag: ${{ steps.get-metadata.outputs.tag }}
