@@ -16,6 +16,9 @@ jobs:
         with:
           token: ${{ secrets.PAT_TOKEN }}
 
+    -   name: Start minikube
+        uses: medyagh/setup-minikube@master
+
     -   name: get metadata
         id: get-metadata
         uses: ./.github/actions/get-pr-metadata

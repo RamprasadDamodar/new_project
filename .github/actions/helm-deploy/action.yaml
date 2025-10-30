@@ -36,5 +36,9 @@ runs:
           --history-max 3 \
           --wait
 
+    - name: Test service URLs
+      run: |
+          minikube service list
+
 
 
