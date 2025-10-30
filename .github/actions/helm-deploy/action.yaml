@@ -15,26 +15,24 @@ runs:
       working-directory: ./deploy/infrastore-chart
       run: |
         pwd
-        sed s/%TAG%/${{ inputs.image-tag }}/g values.yaml
+        sed s/%TAG%/${{ inputs.image-tag }}/g values.yaml >> env.yaml
 
     - name: debug value file
       id: debug-value-file
       shell: bash
       working-directory: ./deploy/infrastore-chart
       run: |
-        cat values.yaml
+        cat env.yaml
 
-    - name: Commit and push changes
-      id: commit-push
+    - name:  deploy   # deploy chart
+      id: deploy
       shell: bash
       working-directory: ./deploy/infrastore-chart
-      run: |
-        git config --global user.name "RamprasadDamodar"
-        git config --global user.email "Ramprasad.Damodar1989@gmail.com"
-        git switch -c test5
-        git add .
-        git commit -m "Updated image"
-        git push origin test5
+      run: |   # you may need to specify more parameters in helm command
+        helm deploy --name  infrastore --wet \
+          -n infrastore --timeout 15m0s \
+          -f values.yaml -f env.yaml \
+          --history-max 3 --yes .
 
 
 
