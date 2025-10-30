@@ -12,17 +12,16 @@ image:
 env:
   superuser:
     username: admin
-    password: YOUR_ADMIN_PASSWORD_HERE # CHANGE THIS OR USE --set
 
 persistence:
   media:
     enabled: true
     storageClassName: ""
-    size: 1Gi
+    size: 50Mi
   db:
     enabled: true
     storageClassName: ""
-    size: 1Gi
+    size: 50Mi
 
 imagePullSecrets: []
 nameOverride: ""
