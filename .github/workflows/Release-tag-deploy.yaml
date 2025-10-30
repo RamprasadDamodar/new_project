@@ -18,11 +18,4 @@ jobs:
 
     -   name: get metadata
         id: get-metadata
-        uses: ./.github/actions/get-pr-metadata 
-
-        
-    -   name: helm deploy
-        id: helm-deploy
-        uses: ./.github/actions/helm-deploy
-        with:
-          image-tag: ${{ steps.get-metadata.outputs.tag }}
+        uses: ./.github/actions/get-pr-metadata
