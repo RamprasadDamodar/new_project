@@ -33,7 +33,7 @@ runs:
         git config --global user.email "Ramprasad.Damodar1989@gmail.com"
         git add .
         git commit -m "Updated image tag"
-        git push --set-upstream origin   
+        git push origin main
 
 
 
