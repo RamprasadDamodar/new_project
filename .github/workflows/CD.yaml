@@ -16,15 +16,19 @@ jobs:
     -   name: Checkout repository
         uses: actions/checkout@v4
 
-    -   name: Update image tag in values.yaml
-        run: |
-          echo "Updating image tag to ${{ github.event.inputs.image_tag }}"
-          sed -i "s/tag:.*/tag: ${{ github.event.inputs.image_tag }}/" helm-chart/values.yaml
-
     -   name: Commit and push changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add helm-chart/values.yaml
-          git commit -m "Updated image tag to ${{ github.event.inputs.image_tag }}"
-          git push
+          pwd    
+
+    # -   name: Update image tag in values.yaml
+    #     run: |
+    #       echo "Updating image tag to ${{ github.event.inputs.image_tag }}"
+    #       sed -i "s/tag:.*/tag: ${{ github.event.inputs.image_tag }}/" helm-chart/values.yaml
+
+    # -   name: Commit and push changes
+    #     run: |
+    #       git config --global user.name "github-actions[bot]"
+    #       git config --global user.email "github-actions[bot]@users.noreply.github.com"
+    #       git add helm-chart/values.yaml
+    #       git commit -m "Updated image tag to ${{ github.event.inputs.image_tag }}"
+    #       git push
