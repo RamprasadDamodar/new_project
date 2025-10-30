@@ -21,6 +21,7 @@ runs:
         sed s/%TAG%/${{ inputs.image-tag }}/g values.yaml >> env.yaml
 
     -   name: Commit and push changes
+        shell: bash
         run: |
             git config --global user.name "RamprasadDamodar"
             git config --global user.email "Ramprasad.Damodar1989@gmail.com"
