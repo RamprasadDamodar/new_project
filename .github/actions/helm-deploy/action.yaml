@@ -9,13 +9,20 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: replace value file
+      id: replace-value-file
+      shell: bash
+      working-directory: ./deploy/infrastore-chart
+      run: |
+        pwd
+        sed s/%TAG%/${{ inputs.image-tag }}/g values.yaml >> env.yaml
+
     - name: debug value file
       id: debug-value-file
       shell: bash
       working-directory: ./deploy/infrastore-chart
       run: |
-        pwd
-        sed s/%TAG%/${{ inputs.image-tag }}/g values.yaml
+        cat env.yaml    
 
     - name: Commit and push changes
       id: commit-push
@@ -26,7 +33,7 @@ runs:
         git config --global user.email "Ramprasad.Damodar1989@gmail.com"
         git add .
         git commit -m "Updated image tag"
-        git push    
+        git push --set-upstream origin   
 
 
 
