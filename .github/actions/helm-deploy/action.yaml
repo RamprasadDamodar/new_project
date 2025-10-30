@@ -31,23 +31,10 @@ runs:
       run: |
         git config --global user.name "RamprasadDamodar"
         git config --global user.email "Ramprasad.Damodar1989@gmail.com"
+        git switch -c test5
         git add .
-        git commit -m "Updated image tag"
-        # Create a temporary branch to save the new commit
-        TEMP_BRANCH="temp-helm-update-$(date +%s)"
-        git branch $TEMP_BRANCH
-        
-        # Check out the main branch
-        git checkout main
-        
-        # Merge the temporary branch into main
-        git merge $TEMP_BRANCH --no-ff --no-edit
-        
-        # Push the updated main branch to the remote
-        git push origin main
-        
-        # (Optional) Clean up the temporary branch
-        git branch -d $TEMP_BRANCH
+        git commit -m "Updated image"
+        git push origin test5
 
 
 
