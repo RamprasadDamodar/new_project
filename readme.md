@@ -54,9 +54,9 @@ curl -X DELETE http://localhost:8000/api/files/1/ \
 
 ## CI/CD Architecture.
   We have below branching strategy along with pipeline.
-  - Feature CICD pipeline which builds and deploys to Dev & QA Enviornments with different namespaces.
-  - Release tag pipeline which creates a release image tag and deploys on UAT Enviornment.
-  - Use promote/hotfix pipeline to deploy your application to PROD Environment.
+  - Feature CICD pipeline which builds and deploys to Dev & QA Enviornments with different namespaces.[FEATURE_RELEASE](https://github.com/RamprasadDamodar/new_project/blob/main/.github/workflows/feature-deploy.yaml)
+  - Release tag pipeline which creates a release image tag and deploys on UAT Enviornment. [RELEASE_TAG](https://github.com/RamprasadDamodar/new_project/blob/main/.github/workflows/Release-tag-deploy.yaml)
+  - Use promote/hotfix pipeline to deploy your application to PROD Environment. [HOTFIX](https://github.com/RamprasadDamodar/new_project/blob/main/.github/workflows/CD.yaml)
     
 <img width="1608" height="334" alt="image" src="https://github.com/user-attachments/assets/769cb3a4-d450-412d-9ba9-a004f1b0af99" />
 
