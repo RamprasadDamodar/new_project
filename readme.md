@@ -74,13 +74,7 @@ curl -X DELETE http://localhost:8000/api/files/1/ \
 	- Docker Image Scan - Scans the image for vulnerabilities using Trivy
 	- Docker Image Push - Pushes the image to GitHub Container Registry
 	- Update Kubernetes value file - Updates the vaules.yaml file with the new image tag.
-	
-  # How the Kubernetes Deployment Update Works
-	- The "Update Kubernetes Deployment" stage:
 
-		- Runs only on pushes to the feature branch
-		- Uses a shell script to update the image reference in the helm values.yaml file
-		- Commits and pushes the updated file back to the repository
     
 ## Deployment Architecture
 
