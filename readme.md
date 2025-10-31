@@ -1,8 +1,8 @@
-Overview
+## Overview
 
 This project demostrates deploying the InfraStore application in kubernetes cluster ( i have used minikube for execution ). It is designed to help you get hands-on experience with CI/CD automation, Kubernetes deployment with auto-scaling feature in a more secure manner.
 
-Project Goals
+## Project Goals
 
 • Deploy InfraStore as scable application using kubernetes.
 • Use persistent storage where needed
@@ -10,7 +10,7 @@ Project Goals
 • Automate deployment with Kubernetes manifests or Helm
 • Include clear documentation for your setup
 
-InfraStore has 4 endpoints which is exposed with REST API:
+## InfraStore has 4 endpoints which is exposed with REST API:
 
 Method Endpoint Description
 POST /api/token/ Obtain a token for authentication
@@ -18,7 +18,7 @@ POST /api/upload/ Upload a file
 GET /api/files/ List files currently in storage
 DELETE /api/files/<id>/ Delete a file from storage
 
-Example API usage:
+## Example API usage:
 
 curl -X POST http://localhost:8000/api/token/ \
 -d "username=admin&password=XXXX"
@@ -33,16 +33,16 @@ http://localhost:8000/api/files/
 curl -X DELETE http://localhost:8000/api/files/1/ \
 -H "Authorization: Token YOUR_TOKEN"
 
-Prerequisites:
+## Prerequisites:
   
-To install minikube:
+## To install minikube:
   curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
   chmod +x minikube-linux-amd64
   sudo mv minikube-linux-amd64 /usr/local/bin/minikubechmod +x minikube-linux-amd64
   minikube version
   minikube start
 
-To install Argocd:
+## To install Argocd:
   kubectl create namespace argocd
   kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
   kubectl get pods -n argocd
@@ -52,14 +52,14 @@ To install Argocd:
 To helm template:
   We can use helm create infrastore-chart command or we can use github workflow to template manifest files.
 
-CI/CD Architecture.
+## CI/CD Architecture.
   
-Deployment Architecture
+## Deployment Architecture
 
 <img width="1436" height="712" alt="image" src="https://github.com/user-attachments/assets/a447c189-3a0c-44d4-a51c-8a1b9c1fe550" />
 
 
-Deploy the InfraStore application to Kubernetes using ArgoCD.
+## Deploy the InfraStore application to Kubernetes using ArgoCD.
 
 
 1. Lab Setup Using This Repo
