@@ -1,6 +1,6 @@
 ## Overview
 
-This project demostrates deploying the InfraStore application in kubernetes cluster ( i have used minikube for execution ). It is designed to help you get hands-on experience with CI/CD automation, Kubernetes deployment with best security practices.
+This project demostrates deploying the InfraStore application in kubernetes cluster ( i have used minikube for execution ). It is designed to help you get hands-on experience with CI/CD automation, Kubernetes deployment with security best practices.
 
 ## Project Goals
 
@@ -12,7 +12,7 @@ This project demostrates deploying the InfraStore application in kubernetes clus
 
 ## InfraStore has 4 endpoints which is exposed with REST API:
 
-- Method             Endpoint                  Description
+### Method             Endpoint                  Description
 - POST               /api/token/                Obtain a token for authentication
 - POST 				/api/upload/ 			 	Upload a file
 - GET 				/api/files/ 				List files currently in storage
@@ -49,11 +49,36 @@ curl -X DELETE http://localhost:8000/api/files/1/ \
   - kubectl port-forward svc/argocd-server -n argocd 8080:443
   - kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 --decode
   
-To helm template:
+## helm template:
   We can use helm create infrastore-chart command or we can use github workflow to template manifest files.
 
 ## CI/CD Architecture.
-  
+  We have below branching strategy along with pipeline.
+  - Feature CICD pipeline which builds and deploys to Dev & QA Enviornments with different namespaces.
+  - Release tag pipeline which creates a release image tag and deploys on UAT Enviornment.
+  - Use promote/hotfix pipeline to deploy your application to PROD Environment.
+    
+<img width="1608" height="334" alt="image" src="https://github.com/user-attachments/assets/769cb3a4-d450-412d-9ba9-a004f1b0af99" />
+
+  # Pipeline Stages
+  # The CI/CD pipeline consists of the following stages:
+
+    - Unit Testing - Runs the test suite using Vitest
+	- Static Code Analysis - Performs linting with ESLint
+	- Build - Creates a production build of the application
+	- Docker Image Creation - Builds a Docker image using a multi-stage Dockerfile
+	- Docker Image Scan - Scans the image for vulnerabilities using Trivy
+	- Docker Image Push - Pushes the image to GitHub Container Registry
+	- Update Kubernetes Deployment - Updates the Kubernetes deployment file with the new image tag.
+	
+  # How the Kubernetes Deployment Update Works
+	- The "Update Kubernetes Deployment" stage:
+
+		- Runs only on pushes to the feature branch
+		- Uses a shell script to update the image reference in the Kubernetes deployment file
+		- Commits and pushes the updated deployment file back to the repository
+		- This ensures that the Kubernetes manifest always references the latest image	
+    
 ## Deployment Architecture
 
 <img width="1436" height="712" alt="image" src="https://github.com/user-attachments/assets/a447c189-3a0c-44d4-a51c-8a1b9c1fe550" />
