@@ -90,5 +90,5 @@ curl -X DELETE http://localhost:8000/api/files/1/ \
  4. Argocd uses a concept called gitops which continuously monitor our Github repo for any changes and auto-deploys if there is any changes.
  5. We have deployed argocd onto our minikube cluster where application is deployed.
 
-### Note: Ingress object i have not created since i deployed in minikube cluster so Ingress flag i have set to False in helm chart.
+- **Ingress object i have not created since i deployed in minikube cluster so Ingress flag i have set to False in helm chart.**
 
