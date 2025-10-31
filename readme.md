@@ -1,6 +1,6 @@
 ## Overview
 
-This project demostrates deploying the InfraStore application in kubernetes cluster ( i have used minikube for execution ). It is designed to help you get hands-on experience with CI/CD automation, Kubernetes deployment with auto-scaling feature in a more secure manner.
+This project demostrates deploying the InfraStore application in kubernetes cluster ( i have used minikube for execution ). It is designed to help you get hands-on experience with CI/CD automation, Kubernetes deployment with best security practices.
 
 ## Project Goals
 
