@@ -86,11 +86,9 @@ curl -X DELETE http://localhost:8000/api/files/1/ \
 1. After pushing changes to your repository on dev branch, GitHub Actions will automatically trigger the workflow.
 2. We have used Argocd for CD purpose with argocd Application manifest.
      This contains the app of apps.yaml file which contains application yaml files of all the services which is deployed in kubernetes cluster. In our case we have used the same repo ref -  [app-of-apps](https://github.com/RamprasadDamodar/new_project/tree/main/apps)
-
-# Note: Ingress object i have not created since i deployed in minikube cluster so Ingress flag i have set to False in helm chart.
-	 
-
  3. This application yaml contains the path to our helm charts manifest which has all the k8s mainifest files to deploy into our cluster.
  4. Argocd uses a concept called gitops which continuously monitor our Github repo for any changes and auto-deploys if there is any changes.
- 5. We have deployed argocd onto our minikube cluster where application is deployed.   
+ 5. We have deployed argocd onto our minikube cluster where application is deployed.
+
+### Note: Ingress object i have not created since i deployed in minikube cluster so Ingress flag i have set to False in helm chart.
 
