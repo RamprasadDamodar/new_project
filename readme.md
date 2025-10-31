@@ -3,13 +3,65 @@ Deployment Architecture
 <img width="1436" height="712" alt="image" src="https://github.com/user-attachments/assets/a447c189-3a0c-44d4-a51c-8a1b9c1fe550" />
 
 Overview
-This project demonstrates the complete workflow of developing, testing, containerizing, and deploying a sample application using modern DevOps tools and practices. It is designed to help you get hands-on experience with application development, containerization, CI/CD automation, and Kubernetes deployment.
+
+This project demostrates deploying the InfraStore application in kubernetes cluster ( i have used minikube for execution ). It is designed to help you get hands-on experience with CI/CD automation, Kubernetes deployment with auto-scaling feature in a more secure manner.
 
 Project Goals
-Develop a sample application and understand the basics of app development.
-Test the application locally using Docker or Podman containers.
-Automate image building and pushing to a registry using GitHub Actions.
-Deploy the containerized application to Kubernetes using ArgoCD.
+
+• Deploy InfraStore as scable application using kubernetes.
+• Use persistent storage where needed
+• Use best security practices
+• Automate deployment with Kubernetes manifests or Helm
+• Include clear documentation for your setup
+
+InfraStore has 4 endpoints which is exposed with REST API:
+
+Method Endpoint Description
+POST /api/token/ Obtain a token for authentication
+POST /api/upload/ Upload a file
+GET /api/files/ List files currently in storage
+DELETE /api/files/<id>/ Delete a file from storage
+
+Example API usage:
+
+curl -X POST http://localhost:8000/api/token/ \
+-d "username=admin&password=XXXX"
+	
+curl -X POST http://localhost:8000/api/upload/ \
+-H "Authorization: Token YOUR_TOKEN" \
+-F "file=@example.txt"
+
+curl -H "Authorization: Token YOUR_TOKEN" \
+http://localhost:8000/api/files/
+
+curl -X DELETE http://localhost:8000/api/files/1/ \
+-H "Authorization: Token YOUR_TOKEN"
+
+Prerequisites:
+  
+To install minikube:
+  curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+  chmod +x minikube-linux-amd64
+  sudo mv minikube-linux-amd64 /usr/local/bin/minikubechmod +x minikube-linux-amd64
+  minikube version
+  minikube start
+
+To install Argocd:
+  kubectl create namespace argocd
+  kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+  kubectl get pods -n argocd
+  kubectl port-forward svc/argocd-server -n argocd 8080:443
+  kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 --decode
+  
+To helm template:
+  We can use helm create infrastore-chart command or we can use github workflow to template manifest files.
+
+CI/CD Architecture.
+  
+  
+Deploy the InfraStore application to Kubernetes using ArgoCD.
+
+
 1. Lab Setup Using This Repo
 Clone the Repository
 git clone https://github.com/<your-username>/App-Development-To-Deployment.git
