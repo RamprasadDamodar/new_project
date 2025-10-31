@@ -73,7 +73,7 @@ curl -X DELETE http://localhost:8000/api/files/1/ \
 	- Docker Image Creation - Builds a Docker image using a multi-stage Dockerfile
 	- Docker Image Scan - Scans the image for vulnerabilities using Trivy
 	- Docker Image Push - Pushes the image to GitHub Container Registry
-	- Update Kubernetes Deployment - Updates the vaules.yaml file with the new image tag.
+	- Update Kubernetes value file - Updates the vaules.yaml file with the new image tag.
 	
   # How the Kubernetes Deployment Update Works
 	- The "Update Kubernetes Deployment" stage:
