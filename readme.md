@@ -52,6 +52,14 @@ curl -X DELETE http://localhost:8000/api/files/1/ \
 ## helm template:
   We can use helm create infrastore-chart command or we can use github workflow to template manifest files.
 
+## CI/CD pipeline steps:
+
+ We have below branching strategy along with pipeline.
+  - Feature CICD pipeline which builds and deploys to Dev & QA Enviornments with different namespaces.[FEATURE_RELEASE](https://github.com/RamprasadDamodar/new_project/blob/main/.github/workflows/feature-deploy.yaml)
+  - Release tag pipeline which creates a release image tag and deploys on UAT Enviornment. [RELEASE_TAG](https://github.com/RamprasadDamodar/new_project/blob/main/.github/workflows/Release-tag-deploy.yaml)
+  - Use promote/hotfix pipeline to deploy your application to PROD Environment. [HOTFIX](https://github.com/RamprasadDamodar/new_project/blob/main/.github/workflows/CD.yaml)
+
+
 ## CI/CD Architecture.
     
 <img width="1608" height="334" alt="image" src="https://github.com/user-attachments/assets/769cb3a4-d450-412d-9ba9-a004f1b0af99" />
@@ -78,12 +86,7 @@ curl -X DELETE http://localhost:8000/api/files/1/ \
 
 <img width="1436" height="712" alt="image" src="https://github.com/user-attachments/assets/a447c189-3a0c-44d4-a51c-8a1b9c1fe550" />
 
-## CI/CD pipeline steps:
 
- We have below branching strategy along with pipeline.
-  - Feature CICD pipeline which builds and deploys to Dev & QA Enviornments with different namespaces.[FEATURE_RELEASE](https://github.com/RamprasadDamodar/new_project/blob/main/.github/workflows/feature-deploy.yaml)
-  - Release tag pipeline which creates a release image tag and deploys on UAT Enviornment. [RELEASE_TAG](https://github.com/RamprasadDamodar/new_project/blob/main/.github/workflows/Release-tag-deploy.yaml)
-  - Use promote/hotfix pipeline to deploy your application to PROD Environment. [HOTFIX](https://github.com/RamprasadDamodar/new_project/blob/main/.github/workflows/CD.yaml)
     
 ##  ArgoCD deployment strategy
 1. After pushing changes to your repository on dev branch, GitHub Actions will automatically trigger the workflow.
