@@ -1,7 +1,3 @@
-Deployment Architecture
-
-<img width="1436" height="712" alt="image" src="https://github.com/user-attachments/assets/a447c189-3a0c-44d4-a51c-8a1b9c1fe550" />
-
 Overview
 
 This project demostrates deploying the InfraStore application in kubernetes cluster ( i have used minikube for execution ). It is designed to help you get hands-on experience with CI/CD automation, Kubernetes deployment with auto-scaling feature in a more secure manner.
@@ -58,7 +54,11 @@ To helm template:
 
 CI/CD Architecture.
   
-  
+Deployment Architecture
+
+<img width="1436" height="712" alt="image" src="https://github.com/user-attachments/assets/a447c189-3a0c-44d4-a51c-8a1b9c1fe550" />
+
+
 Deploy the InfraStore application to Kubernetes using ArgoCD.
 
 
