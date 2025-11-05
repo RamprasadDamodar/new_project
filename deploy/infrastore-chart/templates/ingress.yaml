@@ -21,7 +21,7 @@ spec:
   #   {{- end }}
   # {{- end }}
   rules:
-    - host: {{ .Values.ingress.hostname }}
+    - host: example.infrastore.com
       http:
         paths:
           - path: /
