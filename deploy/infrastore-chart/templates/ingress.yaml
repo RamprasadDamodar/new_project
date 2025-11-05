@@ -30,5 +30,5 @@ spec:
               service:
                 name: {{ include "infrastore-chart.fullname" . }}
                 port:
-                  name: http
+                  name: 8080
 {{- end }}
