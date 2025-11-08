@@ -22,7 +22,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: {{ .Values.service.port }}
+              containerPort: {{ .Values.service.cport }}
               protocol: TCP
           env:
             - name: DJANGO_SUPERUSER_USERNAME
