@@ -8,7 +8,7 @@ This project demostrates deploying the InfraStore application in kubernetes clus
 - Use persistent storage where needed.
 - Use best security practices
 - Automate deployment with Kubernetes manifests or Helm
-- Include clear documentation for your setup
+- Include clear documentation for your setupw
 
 ## InfraStore has 4 endpoints which is exposed with REST API:
 
