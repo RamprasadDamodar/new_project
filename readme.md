@@ -5,7 +5,7 @@ This project demostrates deploying the InfraStore application in kubernetes clus
 ## Project Goals
 
 - Deploy InfraStore as scable application using kubernetes.
-- Use persistent storage where needed
+- Use persistent storage where needed.
 - Use best security practices
 - Automate deployment with Kubernetes manifests or Helm
 - Include clear documentation for your setup
