@@ -14,7 +14,7 @@ This project demostrates deploying the InfraStore application in kubernetes clus
 
 ### Method             Endpoint                  Description
 - POST               /api/token/                Obtain a token for authentication
-- POST 				/api/upload/ 			 	Upload a file
+- POST 				/api/upload/ 1			 	Upload a file
 - GET 				/api/files/ 				List files currently in storage
 - DELETE 			/api/files/<id>/ 			Delete a file from storage
 
